@@ -1,11 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>网络笔记</title>
-    <url>/2021/04/23/%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="欢迎Panda来访"><a href="#欢迎Panda来访" class="headerlink" title="欢迎Panda来访"></a>欢迎Panda来访</h1>]]></content>
+    <title>CloudFlare Warp配置</title>
+    <url>/2021/04/28/CloudFlare-Warp%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h3 id="安装WireGuard"><a href="#安装WireGuard" class="headerlink" title="安装WireGuard"></a>安装WireGuard</h3><p><code>apt update</code></p>
+<p><code>apte install curl sudo lsb-release -y</code></p>
+<h4 id="添加backports源"><a href="#添加backports源" class="headerlink" title="添加backports源"></a>添加backports源</h4><p><code>echo &quot;deb http://deb.debian.org/debian $(lsb_release -sc)-backports main&quot; | sudo tee /etc/apt/sources.list.d/backports.list</code></p>
+<p><code>su root</code></p>
+<p><code>sudo apt update</code></p>
+<h4 id="安装网络工具包"><a href="#安装网络工具包" class="headerlink" title="安装网络工具包"></a>安装网络工具包</h4><p><code>sudo apt install net-tools iproute2 openresolv dnsutils -y</code></p>
+<h4 id="安装wireguard-tools"><a href="#安装wireguard-tools" class="headerlink" title="安装wireguard-tools"></a>安装wireguard-tools</h4><p><code>sudo apt install wireguard-tools --no-install-recommends</code></p>
+<h4 id="更新内核版本"><a href="#更新内核版本" class="headerlink" title="更新内核版本"></a>更新内核版本</h4><p><code>sudo apt -t $(lsb_release -sc)-backports install linux-image-$(dpkg --print-architecture) linux-headers-$(dpkg --print-architecture) --install-recommends -y</code></p>
+<h4 id="重启VPS"><a href="#重启VPS" class="headerlink" title="重启VPS"></a>重启VPS</h4><p><code>reboot</code></p>
+<h4 id="查看版本，确保是5-6以上的版本"><a href="#查看版本，确保是5-6以上的版本" class="headerlink" title="查看版本，确保是5.6以上的版本"></a>查看版本，确保是5.6以上的版本</h4><p><code>uname -r</code></p>
+<h3 id="使用-wgcf-生成-WireGuard-配置文件"><a href="#使用-wgcf-生成-WireGuard-配置文件" class="headerlink" title="使用 wgcf 生成 WireGuard 配置文件"></a>使用 wgcf 生成 WireGuard 配置文件</h3><p>wgcf 是 Cloud­flare WARP 的非官方 CLI 工具，它可以模拟 WARP 客户端注册账号，并生成通用的 Wire­Guard 配置文件。</p>
+<h4 id="安装wgcf"><a href="#安装wgcf" class="headerlink" title="安装wgcf"></a>安装wgcf</h4><p><code>curl -fsSL git.io/wgcf.sh | sudo bash</code></p>
+<h4 id="注册-WARP-账户-将生成-wgcf-account-toml-文件保存账户信息"><a href="#注册-WARP-账户-将生成-wgcf-account-toml-文件保存账户信息" class="headerlink" title="注册 WARP 账户 (将生成 wgcf-account.toml 文件保存账户信息)"></a>注册 WARP 账户 (将生成 wgcf-account.toml 文件保存账户信息)</h4><p><code>wgcf register</code></p>
+<h4 id="生成WireGuard配置文件"><a href="#生成WireGuard配置文件" class="headerlink" title="生成WireGuard配置文件"></a>生成WireGuard配置文件</h4><p><code>wgcf generate</code></p>
+<h4 id="编辑WireGuard配置文件"><a href="#编辑WireGuard配置文件" class="headerlink" title="编辑WireGuard配置文件"></a>编辑WireGuard配置文件</h4><p><code>[Interface]</code></p>
+<p><code>PrivateKey = wL3vEmAyxf1Ij7HlqpDgf8+vh68e/25XbjclLJRzcF8=</code></p>
+<p><code>Address = 172.16.0.2/32</code></p>
+<p><code>Address = fd01:5ca1:ab1e:8b73:159a:b82d:a251:f5d5/128</code></p>
+<p><strong><code>DNS = 8.8.4.4, 1.1.1.1</code></strong></p>
+<p><strong><code>MTU = 1420</code></strong></p>
+<p><strong><code>PostUp = ip rule add from xx.xx.xx.xx/32 lookup main</code></strong></p>
+<p><strong><code>PostDown = ip rule delete from xx.xx.xx.xx/32 lookup main</code></strong></p>
+<p><code>[Peer]</code></p>
+<p><code>PublicKey = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=</code></p>
+<p><strong><code>AllowedIPs = 0.0.0.0/0, ::/0</code></strong></p>
+<p><strong><code>Endpoint = engage.cloudflareclient.com:2408</code></strong></p>
+<ul>
+<li><p>将上述加粗部分的内容替换掉原配置文件中的内容</p>
+</li>
+<li><p>将上述代码中的 xx.xx.xx.xx更换为自己VPS的IP</p>
+</li>
+</ul>
+<h4 id="修改-etc-resolv-conf为如下代码"><a href="#修改-etc-resolv-conf为如下代码" class="headerlink" title="修改/etc/resolv.conf为如下代码"></a>修改/etc/resolv.conf为如下代码</h4><p><code>nameserver 8.8.4.4</code></p>
+<p><code>nameserver 1.1.1.1</code></p>
+<h3 id="启动WireGuard"><a href="#启动WireGuard" class="headerlink" title="启动WireGuard"></a>启动WireGuard</h3><p>将 Wire­Guard 配置文件复制到 /etc/wireguard/ 并命名为 wgcf.conf。</p>
+<p><code>sudo cp wgcf-profile.conf /etc/wireguard/wgcf.conf</code></p>
+<h4 id="开启守护进程并启动WireGuard"><a href="#开启守护进程并启动WireGuard" class="headerlink" title="开启守护进程并启动WireGuard"></a>开启守护进程并启动WireGuard</h4><p><code>systemctl enable wg-quick@wgcf &amp;&amp; systemctl restart wg-quick@wgcf</code></p>
+]]></content>
       <tags>
-        <tag>随笔</tag>
+        <tag>“网络配置”</tag>
       </tags>
   </entry>
 </search>
