@@ -41,8 +41,11 @@
 <p><code>sudo cp wgcf-profile.conf /etc/wireguard/wgcf.conf</code></p>
 <h4 id="开启守护进程并启动WireGuard"><a href="#开启守护进程并启动WireGuard" class="headerlink" title="开启守护进程并启动WireGuard"></a>开启守护进程并启动WireGuard</h4><p><code>systemctl enable wg-quick@wgcf &amp;&amp; systemctl restart wg-quick@wgcf</code></p>
 ]]></content>
+      <categories>
+        <category>网络配置</category>
+      </categories>
       <tags>
-        <tag>“网络配置”</tag>
+        <tag>流媒体解锁</tag>
       </tags>
   </entry>
 </search>
