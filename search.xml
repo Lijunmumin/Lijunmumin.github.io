@@ -48,4 +48,31 @@
         <tag>流媒体解锁</tag>
       </tags>
   </entry>
+  <entry>
+    <title>宝塔面板安装</title>
+    <url>/2021/04/29/%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h4 id="宝塔面板安装"><a href="#宝塔面板安装" class="headerlink" title="宝塔面板安装"></a>宝塔面板安装</h4><p><strong>debian系统</strong></p>
+<p><code>wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh &amp;&amp; bash install.sh</code></p>
+<p><strong>centos系统</strong></p>
+<p><code>yum install -y wget &amp;&amp; wget -O install.sh http://download.bt.cn/install/install_6.0.sh &amp;&amp; sh install.sh</code></p>
+<p><strong>后续面板的升级命令</strong></p>
+<p><code>curl http://download.bt.cn/install/update6.sh|bash</code></p>
+<p><strong>若更新没有生效，请尝试重启</strong></p>
+<p><code> bt restart</code></p>
+<p><strong>若登陆信息丢失，可以用如下命令行查看</strong></p>
+<p><code>/etc/init.d/bt default</code></p>
+<h4 id="宝塔面板配置"><a href="#宝塔面板配置" class="headerlink" title="宝塔面板配置"></a>宝塔面板配置</h4><p>面板安装完成后，第一次进入首页需要配置LNMP或者LAMP，推荐LNMP。</p>
+<ul>
+<li>若内存小于1G，推荐PHP5.6 + Mysql5.5</li>
+<li>若内存大雨1G，推荐PHP7.2 + Mysql5.6</li>
+</ul>
+<p>推荐使用编译安装，但是耗时会很长。</p>
+<h4 id="chevereto配置过程"><a href="#chevereto配置过程" class="headerlink" title="chevereto配置过程"></a>chevereto配置过程</h4><h4 id="nextCloud配置过程"><a href="#nextCloud配置过程" class="headerlink" title="nextCloud配置过程"></a>nextCloud配置过程</h4>]]></content>
+      <categories>
+        <category>建站记录</category>
+      </categories>
+      <tags>
+        <tag>宝塔面板</tag>
+      </tags>
+  </entry>
 </search>
