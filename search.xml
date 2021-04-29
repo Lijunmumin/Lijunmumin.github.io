@@ -49,8 +49,8 @@
       </tags>
   </entry>
   <entry>
-    <title>宝塔面板安装</title>
-    <url>/2021/04/29/%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E5%AE%89%E8%A3%85/</url>
+    <title>宝塔面板安装及自建图床和网盘</title>
+    <url>/2021/04/29/%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E5%AE%89%E8%A3%85%E5%8F%8A%E8%87%AA%E5%BB%BA%E5%9B%BE%E5%BA%8A%E5%92%8C%E7%BD%91%E7%9B%98/</url>
     <content><![CDATA[<h4 id="宝塔面板安装"><a href="#宝塔面板安装" class="headerlink" title="宝塔面板安装"></a>宝塔面板安装</h4><p><strong>debian系统</strong></p>
 <p><code>wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh &amp;&amp; bash install.sh</code></p>
 <p><strong>centos系统</strong></p>
@@ -61,13 +61,29 @@
 <p><code> bt restart</code></p>
 <p><strong>若登陆信息丢失，可以用如下命令行查看</strong></p>
 <p><code>/etc/init.d/bt default</code></p>
-<h4 id="宝塔面板配置"><a href="#宝塔面板配置" class="headerlink" title="宝塔面板配置"></a>宝塔面板配置</h4><p>面板安装完成后，第一次进入首页需要配置LNMP或者LAMP，推荐LNMP。</p>
+<h4 id="宝塔面板配置"><a href="#宝塔面板配置" class="headerlink" title="宝塔面板配置"></a>宝塔面板配置</h4><p><strong>面板初始化</strong></p>
+<p>面板安装完成后，第一次进入首页需要配置LNMP或者LAMP，推荐LNMP。</p>
 <ul>
 <li>若内存小于1G，推荐PHP5.6 + Mysql5.5</li>
 <li>若内存大雨1G，推荐PHP7.2 + Mysql5.6</li>
 </ul>
 <p>推荐使用编译安装，但是耗时会很长。</p>
-<h4 id="chevereto配置过程"><a href="#chevereto配置过程" class="headerlink" title="chevereto配置过程"></a>chevereto配置过程</h4><h4 id="nextCloud配置过程"><a href="#nextCloud配置过程" class="headerlink" title="nextCloud配置过程"></a>nextCloud配置过程</h4>]]></content>
+<p><strong>面板配置</strong></p>
+<ol>
+<li><p><em>添加站点</em> - <em>数据库：选择MySQL</em></p>
+<p><img src="https://tc.kiwifruit.xyz/images/2021/04/29/59b59c3adf2c3ecadd38c73a0bb1d1f7.png" alt="59b59c3adf2c3ecadd38c73a0bb1d1f7.png"></p>
+</li>
+</ol>
+<h4 id="chevereto配置过程"><a href="#chevereto配置过程" class="headerlink" title="chevereto配置过程"></a>chevereto配置过程</h4><p><strong>下载地址</strong></p>
+<p><code>https://github.com/Chevereto/Chevereto-Free/releases</code></p>
+<p><strong>配置文件</strong></p>
+<p>网站-网站设置-配置文件，在server里面添加以下内容并保存：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">location / &#123; </span><br><span class="line">     try_files $uri $uri/ /index.php?$query_string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://tc.kiwifruit.xyz/images/2021/04/29/Chevereto.png" alt="Chevereto.png"></p>
+<h4 id="nextCloud配置过程"><a href="#nextCloud配置过程" class="headerlink" title="nextCloud配置过程"></a>nextCloud配置过程</h4>]]></content>
       <categories>
         <category>建站记录</category>
       </categories>
