@@ -4,7 +4,7 @@
     <title>CloudFlare Warp配置</title>
     <url>/2021/04/28/CloudFlare-Warp%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h3 id="安装WireGuard"><a href="#安装WireGuard" class="headerlink" title="安装WireGuard"></a>安装WireGuard</h3><p><code>apt update</code></p>
-<p><code>apte install curl sudo lsb-release -y</code></p>
+<p><code>apt install curl sudo lsb-release -y</code></p>
 <h4 id="添加backports源"><a href="#添加backports源" class="headerlink" title="添加backports源"></a>添加backports源</h4><p><code>echo &quot;deb http://deb.debian.org/debian $(lsb_release -sc)-backports main&quot; | sudo tee /etc/apt/sources.list.d/backports.list</code></p>
 <p><code>su root</code></p>
 <p><code>sudo apt update</code></p>
@@ -200,6 +200,17 @@
       </categories>
       <tags>
         <tag>路由器配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Principles读书笔记</title>
+    <url>/2021/05/15/Principles%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>团队管理</category>
+      </categories>
+      <tags>
+        <tag>读书笔记</tag>
       </tags>
   </entry>
 </search>
